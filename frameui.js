@@ -1,9 +1,4 @@
 //作者 ShenVi
+$('.frameui-header').load('common-header.html');
 
-        $(document).ready(function () {
-
-            $('.frameui-header').load('common-header.html');
-
-            $('.frameui-footer').load('common-footer.html');
-
-        });
+$('.frameui-footer').load('common-footer.html');

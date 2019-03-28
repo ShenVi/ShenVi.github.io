@@ -32,6 +32,7 @@ ul {
 }
 
 .admin-header-list a:hover :after {
+  content: none;
 }
 
 .admin-main {

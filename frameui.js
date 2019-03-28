@@ -1,10 +1,10 @@
 var urltext = window.location.pathname;
 if(urltext.substring(0,9) == '/uidesign'){
     var headerloadurl = '../../common/header.html'
-    var footerloadurl = '../../common/header.html'
+    var footerloadurl = '../../common/footer.html'
 }else{
     var headerloadurl = 'common/header.html'
-    var footerloadurl = 'common/header.html'
+    var footerloadurl = 'common/footer.html'
 }
 
 console.log(window.location.pathname)

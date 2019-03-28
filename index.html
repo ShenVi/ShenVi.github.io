@@ -242,13 +242,19 @@
     <script src="assets/js/jquery.min.js"></script>
     <!--<![endif]-->
     <script src="assets/js/amazeui.min.js"></script>
-    <script src="frameui.js"></script>
     <script type="text/javascript">
         $(function () {
             $('.am-slider-manual').flexslider({
                 // options
             });
+            $('.frameui-header').load('common/header.html',function(){
+                $("#nav_tab1").addClass("am-active")
+            });
+            $('.frameui-footer').load('common/footer.html');
+            
         });
+        
+        
     </script>
 </body>
 

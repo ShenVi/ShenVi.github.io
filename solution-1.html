@@ -675,8 +675,91 @@ class Videofile(db.Model):
         db.session.add(self)
         db.session.commit()
         </pre>
+        数据库储存的数据_如果360 = true 则= 该视频有360p的清晰度格式<br>
+        http + key + 360p + mp4 即刻调用出该视频文件进行播放 如果该视频不存在这个清晰度 则无法打开视频
     </li>
+    <li>
+        <h1>截止到这里 视频的储存和视频文件的储存都已经完成</h1>
+        剩下的只是仅剩的一些网站逻辑上的处理
+        原理是非常简单的 不需要贴代码了
+        在下面elastic储存的数据里面有一个<a>status</a>是储存了视频的状态 用户上传的视频默认是 = 1 通过后台审核以后 = 0 即刻被显示出来 = 1的是则无法打开视频进行播放 通过查询用户id + status = 1的视频即刻查询到用户未通过审核的稿件
+        <pre>
+    cachedata = es.index(index="video", doc_type='video', body={
+        'partition': partition, #视频分区
+        'category': category, #视频类目
+        'authorid': current_user.id, #作者id
+        'grade_4k': grade_4k, #4k条件 0=无 1=有
+        'release_date': time.strftime("%Y-%m-%d",time.localtime(time.time())), #发布日期
+        'release_time': time.strftime('%H:%M:%S',time.localtime(time.time())), #时间
+        'timestamp': datetime.now(), #排序日期
+        'status': 1, #视频状态 0=正常 1=未审核 2=退回
+        'video_cover': video_cover, #视频封面
+        'video_name': video_name, #视频名
+        'video_introduction': video_introduction, #视频介绍
+        'video_duration': '', #视频时长
+        'reprint': video_reprint, #视频转载地址(无地址=原创)
+        'play_statistics': 0, #播放数统计
+        'comment_statistics': 0, #评论数统计
+        'like_frequency': 0, #喜欢统计
+        'dislike_frequency': 0, #不喜欢统计
+    })
+        </pre>
+    </li>
+    <li>
+        <h1>关于视频播放器可以看我开源的播放器<a href="https://github.com/ShenVi/Niputv-H5player">https://github.com/ShenVi/Niputv-H5player</a></h1>        
+        <a>这里有讲解如何调用该储存方式的视频文件进行播放{"key": "2.mp4", "360": true, "480": true, "720": true, "1080": true, "2k": false, "4k": false}</a>
+        <pre>
+<a>这个是组成播放地址的方法</a>
+    var videoptype_list = [{
+            "calss": "360P",
+            "datacalss": "360p",
+            "type": getvideofile['360']
+        },
+        {
+            "calss": "480P",
+            "datacalss": "480p",
+            "type": getvideofile['480']
+        },
+        {
+            "calss": "720P",
+            "datacalss": "720p",
+            "type": getvideofile['720']
+        },
+        {
+            "calss": "1080P",
+            "datacalss": "1080p",
+            "type": getvideofile['1080']
+        },
+        {
+            "calss": "2K",
+            "datacalss": "2k",
+            "type": getvideofile['2k']
+        },
+        {
+            "calss": "4K",
+            "datacalss": "4k",
+            "type": getvideofile['4k']
+        },
+    ]
+    
+    //获取视频720P清晰度
+    var video_sharpness720p = getvideofile['720']
+    //提取filekey
+    var filekey = getFileName(getvideofile['key'])
+    //解析filekey
+    var videofilekey = filekey.substring(0, filekey.lastIndexOf("."));
+    
+    //循环写入可选清晰度
+    $.each((videoptype_list),
+        function () {
+            insert_video_sharpness(this)
+        });
+
+        </pre>
+    </li>
+    <li><h1>最后 感谢你观看此文章 Thank</h1></li>
     </ul>
+        
     </div>
     <hr class="am-article-divider am-show-sm-only">
     <div class="am-u-sm-12 am-u-md-1 am-u-lg1 ">

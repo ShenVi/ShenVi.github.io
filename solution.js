@@ -1,0 +1,1 @@
+$('.solution-nav').load('solution-nav.html');

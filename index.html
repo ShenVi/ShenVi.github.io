@@ -48,7 +48,7 @@
 <![endif]-->
 
 <!-- 页面内容 开发时删除 -->
-    <div class="configHead"></div>
+    <div class="frameui-header"></div>
     
     <div id="topsollr"  style="margin-top:110px;">
         <div data-am-widget="slider" class="am-slider am-slider-d2" data-am-slider='{"directionNav":false}'>
@@ -212,7 +212,7 @@
         </div>
     </div>
     
-    <div class="configFoot"></div>
+    <div class="frameui-footer"></div>
 <!-- 以上页面内容 开发时删除 -->
 
 <!--[if lt IE 9]>
@@ -225,14 +225,8 @@
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="frameui.js"></script>
 <script type="text/javascript">
-        $(document).ready(function () {
- 
-            $('.configHead').load('common/header.html');
- 
-            $('.configFoot').load('common/footer.html');
- 
-        });
         $(function() {
             $('.am-slider-manual').flexslider({
             // options

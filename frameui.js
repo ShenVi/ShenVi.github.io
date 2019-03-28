@@ -10,23 +10,23 @@ if(urltext.substring(0,9) == '/uidesign'){
 console.log(window.location.pathname)
 $('.frameui-header').load(headerloadurl,function(){
     if (urltext == '/project.html'){
-        console.log(1)
+        console.log('project')
         $("#nav_tab2").addClass("am-active")
         
     }else if(urltext == '/solution.html'){
-        console.log(2)
+        console.log('solution')
         $("#nav_tab3").addClass("am-active")
         
     }else if(urltext == '/design.html'){
-        console.log(3)
+        console.log('design')
         $("#nav_tab4").addClass("am-active")
         
     }else if(urltext.substring(0,9) == '/uidesign'){
-        console.log(4)
+        console.log('uidesign')
         $("#nav_tab4").addClass("am-active")
         
     }else{
-        console.log(5)
+        console.log('index')
         $("#nav_tab1").addClass("am-active")
     }
 });

@@ -1,0 +1,10 @@
+.am-container{max-width: 1400px;}
+.am-topbar{background-color: #7400b3}
+.am-topbar-nav>li>a{padding: 0 13px}
+
+.am-topbar a:hover{color: #fff}
+.am-nav>li>a:hover{background-color: #000000}
+
+.am-slider-content{width: 30%;min-width: 300px;}
+
+.am-gallery-imgbordered .am-gallery-item img{box-shadow:inherit}
